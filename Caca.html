@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puzzolina 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom, #ffe6ec, #fff);
+      color: #5a2a2a;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      position: relative;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-weight: normal;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      margin: 25px 0;
+    }
+
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin: 40px 0;
+    }
+
+    .photos img {
+      width: 100%;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .photos img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .question {
+      font-size: 2em;
+      margin-top: 50px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 30px;
+      background-color: #ff7a9e;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background-color: #ff4f82;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .answer {
+      margin-top: 40px;
+      font-size: 1.5em;
+      color: #c2185b;
+    }
+
+    /* CUORICINI */
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      color: #ff4f82;
+      font-size: 20px;
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-1200px) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Puzzolina 💖</h1>
+    <h2>Questo sito è solo per te</h2>
+
+    <p>
+      Non sono mai stato bravo a spiegare a parole quanto sei importante per me.
+      Ma so una cosa:  
+      ogni giorno con te è più bello del giorno prima.
+    </p>
+
+    <p>
+      Sei il mio sorriso automatico,  
+      il mio pensiero felice,  
+      la mia persona.
+    </p>
+
+    <div class="photos">
+      <img src="foto1.jpg" alt="Noi insieme">
+      <img src="foto2.jpg" alt="Un ricordo speciale">
+      <img src="foto3.jpg" alt="Un altro momento nostro">
+    </div>
+
+    <p>
+      Non importa dove siamo o cosa facciamo,  
+      se ci sei tu… io sto bene.
+    </p>
+
+    <div class="question">
+      Vuoi essere la mia Valentine? 💘
+    </div>
+
+    <button onclick="showAnswer()">Sì 💖</button>
+
+    <div id="answer" class="answer hidden">
+      Sapevo che avresti detto sì.  
+      Sei il mio amore, oggi e sempre 🌹
+    </div>
+  </div>
+
+  <script>
+    const body = document.body;
+
+    // Funzione cuoricini fluttuanti
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+      heart.innerHTML = '❤️';
+      body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    window.addEventListener('load', () => {
+      setInterval(createHeart, 300);
+    });
+
+    // Mostra la risposta e sparge cuori extra
+    function showAnswer() {
+      document.getElementById('answer').classList.remove('hidden');
+
+      // Spargimento di cuoricini extra
+      for (let i = 0; i < 30; i++) {
+        setTimeout(createHeart, i * 100);
+      }
+    }
+  </script>
+</body>
+</html>
